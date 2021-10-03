@@ -42,7 +42,13 @@ class MovieRentalApi{
 
     //this is to get the rented movie
     getAllRentedMovies(){
-        
+        const allRentedMovies = this.listOfMovies.filter((movie) => movie.isRented === true);
+        if (allRentedMovies.length === 0) {
+            return console.log("No Movies have been rented out");
+        }
+
+        console.log("Results of Rented out Movies: \n", allRentedMovies);
+        return allRentedMovies;
     }
 }
 
@@ -51,3 +57,4 @@ const listOfMovies = new MovieRentalApi();
 listOfMovies.getMovieByName("Dead Pool");
 listOfMovies.rentMovie("Dead Pool");
 listOfMovies.getMovieByName("Dead Pool");
+listOfMovies.getAllRentedMovies();
