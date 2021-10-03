@@ -50,14 +50,23 @@ class MovieRentalApi{
         console.log("Results of Rented out Movies: \n", allRentedMovies);
         return allRentedMovies;
     }
+
+    //the API user can also add movies using this FN the default status logically is false
+    addNewMovies(name, dateReleased){
+        if (name == undefined) return console.log("No name provided\n");
+        const newMovie = {name, dateReleased, isRented: false};
+        this.listOfMovies.push(newMovie);
+    }
 }
 
 
 //here we test and access all our api functions as a programmer with the api integration would
 let movieName = "Dead Pool";
-
 const listOfMovies = new MovieRentalApi();
 listOfMovies.getAllMovies();
 listOfMovies.getMovieByName(movieName);
 listOfMovies.rentMovie(movieName);
 listOfMovies.getAllRentedMovies();
+listOfMovies.addNewMovies("Queen Elizabeth", "2010");
+//to check desired result
+listOfMovies.getAllMovies();
